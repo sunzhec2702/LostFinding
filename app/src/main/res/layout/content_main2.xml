@@ -10,4 +10,11 @@
     tools:showIn="@layout/activity_main"
     tools:context="com.example.darren.lostfinding.MainActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scan It!"
+        android:id="@+id/scanner"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
