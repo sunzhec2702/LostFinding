@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">LostFinding</string>
     <string name="action_settings">Settings</string>
+    <string name="placeHolder">placeHolder</string>
+    <string name="seekbar_add">+</string>
+    <string name="seekbar_minus">-</string>
+    <string name="create">Generate</string>
+    <string name="scan_failed">scan failed</string>
+    <string name="bottom_hint">Please make sure the distance is 10cm</string>
+    <string name="top_hint">Put the QR into the square</string>
+    <string name="cancel">cancel</string>
+    <string name="msg_camera_framework_bug">Sorry, the camera occurs error</string>
+    <string name="button_ok">OK</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
