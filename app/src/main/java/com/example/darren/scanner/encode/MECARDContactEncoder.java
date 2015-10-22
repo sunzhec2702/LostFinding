@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.google.zxing.client.android.encode;
+package com.example.darren.scanner.encode;
 
 import android.telephony.PhoneNumberUtils;
-
 import java.util.List;
 import java.util.regex.Pattern;
 

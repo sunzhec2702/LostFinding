@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.google.zxing.client.android.encode;
+package com.example.darren.scanner.encode;
 
 import android.graphics.Point;
 import android.view.Display;
 import android.view.MenuInflater;
 import android.view.WindowManager;
 import com.google.zxing.WriterException;
-import com.google.zxing.client.android.Contents;
-import com.google.zxing.client.android.FinishListener;
-import com.google.zxing.client.android.Intents;
-import com.google.zxing.client.android.R;
+import com.example.darren.scanner.Contents;
+import com.example.darren.scanner.FinishListener;
+import com.example.darren.scanner.Intents;
+import com.example.darren.lostfinding.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

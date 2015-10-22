@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.zxing.client.android.encode;
+package com.example.darren.scanner.encode;
 
 import java.util.Collection;
 import java.util.HashSet;
