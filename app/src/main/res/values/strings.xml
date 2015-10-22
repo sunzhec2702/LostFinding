@@ -31,7 +31,7 @@
     <string name="button_share_by_sms">Share via SMS</string>
     <string name="button_share_clipboard">Clipboard</string>
     <string name="button_share_contact">Contact</string>
-    <string name="button_show_map">Show map</string>
+    <string name="button_show_map">Show Map</string>
     <string name="button_sms">Send SMS</string>
     <string name="button_web_search">Web search</string>
     <string name="button_wifi">Connect to Network</string>
