@@ -1,2 +1,0 @@
-# LostFinding
-Lost Finding Project
