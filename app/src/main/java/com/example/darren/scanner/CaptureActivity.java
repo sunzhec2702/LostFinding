@@ -163,7 +163,6 @@ public final class CaptureActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.capture);
@@ -398,7 +397,10 @@ public final class CaptureActivity extends Activity implements
 		Toast.makeText(this,
 				"识别结果:" + ResultParser.parseResult(rawResult).toString(),
 				Toast.LENGTH_SHORT).show();
-
+		Intent result = new Intent();
+		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
+		this.setResult(0, result);
+		this.finish();
 	}
 
 	public void restartPreviewAfterDelay(long delayMS) {

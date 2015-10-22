@@ -10,18 +10,26 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.darren.scanner.CaptureActivity;
 import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
     private String decodeResult;
+    private Button scanButton;
+    private TextView scanResult;
     final String logTag = "LostFinding";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(logTag, "in the onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            String result = data.getStringExtra("result");
+            if (result != null)
+                scanResult.setText(result);
+        }
     }
 
     @Override
@@ -29,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        Button scanButton = (Button) findViewById(R.id.scanner);
+        scanButton = (Button) findViewById(R.id.scanner);
+        scanResult = (TextView) findViewById(R.id.scanResult);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
