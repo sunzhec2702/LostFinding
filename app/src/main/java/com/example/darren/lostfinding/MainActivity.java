@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Browser;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -85,7 +86,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        testButoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
+                startActivity(testIntent);
+            }
+        });
     }
 
 }
