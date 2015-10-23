@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Browser;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +17,7 @@ import com.example.darren.scanner.CaptureActivity;
 
 public class MainActivity extends AppCompatActivity {
     private String decodeResult;
-    private Button scanButton;
+    private Button scanButton,testButoon;
     private TextView scanResult;
     private TextView positionView;
     final String logTag = "LostFinding";
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             posHandler.postDelayed(posRunnable, 1000);
         }
     };
- stat
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(logTag, "in the onActivityResult");
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         scanButton = (Button) findViewById(R.id.scanner);
         scanResult = (TextView) findViewById(R.id.scanResult);
+        testButoon=(Button) findViewById(R.id.test);
         positionView = (TextView) findViewById(R.id.positionText);
         posUpdate = new PositionUpdate(this);
 
@@ -85,7 +86,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        testButoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
+                startActivity(testIntent);
+            }
+        });
     }
 
 }

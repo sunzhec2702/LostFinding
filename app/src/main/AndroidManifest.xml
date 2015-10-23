@@ -32,5 +32,10 @@
             android:name="com.example.darren.scanner.CaptureActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize" >
         </activity>
+        <activity
+            android:name="com.example.darren.lostfinding.BrowserAcitvity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize" >
+        </activity>
+
     </application>
 </manifest>

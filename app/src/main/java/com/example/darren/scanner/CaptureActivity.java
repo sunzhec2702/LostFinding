@@ -176,6 +176,7 @@ public final class CaptureActivity extends Activity implements
 		findViewById(R.id.capture_scan_photo).setOnClickListener(this);
 
 		findViewById(R.id.capture_flashlight).setOnClickListener(this);
+		findViewById(R.id.capture_button_cancel).setOnClickListener(this);
 
 	}
 
@@ -517,6 +518,9 @@ public final class CaptureActivity extends Activity implements
 					cameraManager.setTorch(true); // 打开闪光灯
 					isFlashlightOpen = true;
 				}
+				break;
+			case R.id.capture_button_cancel:
+				finish();
 				break;
 			default:
 				break;
