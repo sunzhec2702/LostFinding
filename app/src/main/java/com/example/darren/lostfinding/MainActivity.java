@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         scanButton = (Button) findViewById(R.id.scanner);
         scanResult = (TextView) findViewById(R.id.scanResult);
-        testButoon=(Button) findViewById(R.id.test);
+        //testButoon=(Button) findViewById(R.id.test);
         positionView = (TextView) findViewById(R.id.positionText);
         posUpdate = new PositionUpdate(this);
 
@@ -86,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        testButoon.setOnClickListener(new View.OnClickListener() {
+        /*testButoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
                 startActivity(testIntent);
             }
-        });
+        });*/
     }
 
 }

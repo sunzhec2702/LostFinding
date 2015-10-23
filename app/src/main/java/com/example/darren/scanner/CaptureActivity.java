@@ -24,6 +24,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.darren.lostfinding.BrowserAcitvity;
 import com.example.darren.scanner.*;
 import com.example.darren.scanner.BeepManager;
 import com.example.darren.scanner.IntentSource;
@@ -395,12 +396,15 @@ public final class CaptureActivity extends Activity implements
 
 		beepManager.playBeepSoundAndVibrate();
 
-		Toast.makeText(this,
+		/*Toast.makeText(this,
 				"识别结果:" + ResultParser.parseResult(rawResult).toString(),
 				Toast.LENGTH_SHORT).show();
 		Intent result = new Intent();
 		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
-		this.setResult(0, result);
+		this.setResult(0, result);*/
+		Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);
+		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
+		startActivity(result);
 		this.finish();
 	}
 
