@@ -16,7 +16,7 @@ import com.example.darren.scanner.CaptureActivity;
 
 public class MainActivity extends AppCompatActivity {
     private String decodeResult;
-    private Button scanButton;
+    private Button scanButton,testButoon;
     private TextView scanResult;
     private TextView positionView;
     final String logTag = "LostFinding";
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             posHandler.postDelayed(posRunnable, 1000);
         }
     };
- stat
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(logTag, "in the onActivityResult");
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         scanButton = (Button) findViewById(R.id.scanner);
         scanResult = (TextView) findViewById(R.id.scanResult);
+        testButoon=(Button) findViewById(R.id.test);
         positionView = (TextView) findViewById(R.id.positionText);
         posUpdate = new PositionUpdate(this);
 
