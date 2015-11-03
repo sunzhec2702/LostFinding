@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Browser;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +14,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.darren.lostfinding.net.MyClient;
 import com.example.darren.scanner.CaptureActivity;
+import com.google.zxing.client.result.ResultParser;
+import com.squareup.okhttp.Request;
 
 public class MainActivity extends AppCompatActivity {
     private String decodeResult;
-    private Button scanButton,testButoon;
+    private Button scanButton,memberButoon,marketButoon,ChatButoon;
     private TextView scanResult;
     private TextView positionView;
     final String logTag = "LostFinding";
     Handler posHandler = new Handler();
     private PositionUpdate posUpdate;
     private boolean isPositionStart = false;
-
+    private Gdata app;
+    private String memUrl="http://192.168.0.88:8080/WHOS/member.jsp";
     Runnable posRunnable = new Runnable() {
         @Override
         public void run() {
@@ -52,10 +57,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = (Gdata)getApplication();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         scanButton = (Button) findViewById(R.id.scanner);
+        memberButoon = (Button) findViewById(R.id.member);
+        marketButoon = (Button) findViewById(R.id.market);
+        ChatButoon = (Button) findViewById(R.id.chat);
+
         scanResult = (TextView) findViewById(R.id.scanResult);
         //testButoon=(Button) findViewById(R.id.test);
         positionView = (TextView) findViewById(R.id.positionText);
@@ -86,13 +96,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*testButoon.setOnClickListener(new View.OnClickListener() {
+        memberButoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
-                startActivity(testIntent);
+                app.getClient().getAsyn(memUrl, new MyClient.ResultCallback<String>() {
+                    @Override
+                    public void onError(Request request, Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(String u) {
+                        Intent result = new Intent(MainActivity.this, BrowserAcitvity.class);
+                        result.putExtra("result", u);
+                        startActivity(result);
+                    }
+                });
+                /*Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
+                startActivity(testIntent);*/
             }
-        });*/
+        });
+        ChatButoon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent result = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(result);
+
+                /*Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
+                startActivity(testIntent);*/
+            }
+        });
+
     }
 
 }

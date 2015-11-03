@@ -25,6 +25,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.darren.lostfinding.BrowserAcitvity;
+import com.example.darren.lostfinding.Gdata;
+import com.example.darren.lostfinding.net.MyClient;
 import com.example.darren.scanner.*;
 import com.example.darren.scanner.BeepManager;
 import com.example.darren.scanner.IntentSource;
@@ -39,6 +41,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
 import com.google.zxing.client.result.ResultParser;
+import com.squareup.okhttp.Request;
 
 /**
  * This activity opens the camera and does the actual scanning on a background
@@ -160,14 +163,14 @@ public final class CaptureActivity extends Activity implements
 		}
 
 	}
-
+	private Gdata app;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.capture);
-
+		app = (Gdata)getApplication();
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
 		beepManager = new com.example.darren.scanner.BeepManager(this);
@@ -402,10 +405,24 @@ public final class CaptureActivity extends Activity implements
 		Intent result = new Intent();
 		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
 		this.setResult(0, result);*/
-		Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);
+		app.getClient().getAsyn(ResultParser.parseResult(rawResult).toString(), new MyClient.ResultCallback<String>() {
+			@Override
+			public void onError(Request request, Exception e) {
+				e.printStackTrace();
+			}
+
+			@Override
+			public void onResponse(String u) {
+				Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);
+				result.putExtra("result", u);
+				startActivity(result);
+				CaptureActivity.this.finish();
+			}
+		});
+		/*Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);
 		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
 		startActivity(result);
-		this.finish();
+		this.finish();*/
 	}
 
 	public void restartPreviewAfterDelay(long delayMS) {

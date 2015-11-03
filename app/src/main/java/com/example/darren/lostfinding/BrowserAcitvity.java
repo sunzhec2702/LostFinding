@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.darren.lostfinding.net.GetResponse;
 import com.example.darren.scanner.CaptureActivity;
 
 
@@ -44,12 +43,14 @@ public class BrowserAcitvity extends Activity {
         setContentView(R.layout.browser);
         Intent ihere=this.getIntent();
         final Bundle bhere=ihere.getExtras();
+
         /*if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }*/
         testResult=(TextView) findViewById(R.id.testtext);
-
+        testResult.setText(bhere.getString("result"));
+        /*
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -73,6 +74,7 @@ public class BrowserAcitvity extends Activity {
 
         });
         thread.start();
+        */
         //testResult.setText(GR.getReslut());
         //backButton = (Button) findViewById(R.id.goback);
         /*backButton.setOnClickListener(new View.OnClickListener() {
