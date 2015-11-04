@@ -1,5 +1,6 @@
 package com.example.darren.lostfinding;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.darren.lostfinding.net.MyClient;
@@ -19,9 +23,28 @@ import com.example.darren.scanner.CaptureActivity;
 import com.google.zxing.client.result.ResultParser;
 import com.squareup.okhttp.Request;
 
+
+
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendMessageToWX;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.sdk.openapi.WXAppExtendObject;
+import com.tencent.mm.sdk.openapi.WXEmojiObject;
+import com.tencent.mm.sdk.openapi.WXImageObject;
+import com.tencent.mm.sdk.openapi.WXMediaMessage;
+import com.tencent.mm.sdk.openapi.WXMusicObject;
+import com.tencent.mm.sdk.openapi.WXTextObject;
+import com.tencent.mm.sdk.openapi.WXVideoObject;
+import com.tencent.mm.sdk.openapi.WXWebpageObject;
+import com.tencent.mm.sdk.openapi.SendAuth;
+
+import net.sourceforge.simcpux.SendToWXActivity;
+import net.sourceforge.simcpux.uikit.MMAlert;
+import net.sourceforge.simcpux.wxapi.WXEntryActivity;
+
 public class MainActivity extends AppCompatActivity {
     private String decodeResult;
-    private Button scanButton,memberButoon,marketButoon,ChatButoon;
+    private Button scanButton,memberButoon,marketButoon,ChatButoon,msgButton;
     private TextView scanResult;
     private TextView positionView;
     final String logTag = "LostFinding";
@@ -65,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         memberButoon = (Button) findViewById(R.id.member);
         marketButoon = (Button) findViewById(R.id.market);
         ChatButoon = (Button) findViewById(R.id.chat);
-
+        msgButton=(Button) findViewById(R.id.msg);
         scanResult = (TextView) findViewById(R.id.scanResult);
         //testButoon=(Button) findViewById(R.id.test);
         positionView = (TextView) findViewById(R.id.positionText);
@@ -112,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(result);
                     }
                 });
-                /*Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
-                startActivity(testIntent);*/
             }
         });
         ChatButoon.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +144,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent result = new Intent(MainActivity.this, ChatActivity.class);
                 startActivity(result);
 
-                /*Intent testIntent = new Intent(MainActivity.this, BrowserAcitvity.class);
-                startActivity(testIntent);*/
             }
         });
+
+        msgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent result = new Intent(MainActivity.this, WXEntryActivity.class);
+                startActivity(result);
+
+            }
+        });
+
 
     }
 
