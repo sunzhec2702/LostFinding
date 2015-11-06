@@ -49,7 +49,7 @@
             android:layout_weight="3.0"
             android:gravity="center"
             android:paddingLeft="20.0dip"
-            android:text="@string/top_hint"
+            android:text="top_hint"
             android:textColor="#ffffffff"
             android:textSize="13.0sp" />
 
@@ -84,7 +84,7 @@ s
             android:layout_height="40.0dip"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20.0dip"
-            android:text="@string/cancel"
+            android:text="cancel"
             android:textSize="14.0sp" />
 
         <Button
@@ -93,7 +93,7 @@ s
             android:layout_height="40.0dip"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20.0dip"
-            android:text="@string/create"
+            android:text="create"
             android:textSize="14.0sp"
             android:visibility="gone" />
 
@@ -104,7 +104,7 @@ s
             android:gravity="center_vertical"
             android:paddingLeft="20.0dip"
             android:paddingRight="20.0dip"
-            android:text="@string/bottom_hint"
+            android:text="bottom_hint"
             android:textColor="#ffffffff"
             android:textSize="13.0sp" />
     </LinearLayout>

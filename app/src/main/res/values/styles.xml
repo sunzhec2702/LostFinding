@@ -1,5 +1,20 @@
 <resources>
 
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+
+
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -249,10 +264,10 @@
         <item name="android:ellipsize">end</item>
         <item name="android:gravity">center_vertical</item>
         <!--
-		<item name="android:shadowColor">#80A0A0A0</item>
-		<item name="android:shadowDy">1.2</item>
-		<item name="android:shadowDx">1.2</item>
-		<item name="android:shadowRadius">1</item>
+        <item name="android:shadowColor">#80A0A0A0</item>
+        <item name="android:shadowDy">1.2</item>
+        <item name="android:shadowDx">1.2</item>
+        <item name="android:shadowRadius">1</item>
         -->
     </style>
 
@@ -441,5 +456,5 @@
     <style name="DataSheetAnimation" parent="@android:style/Animation.Dialog">
         <item name="android:windowEnterAnimation">@anim/push_up_in</item>
     </style>
-
 </resources>
+

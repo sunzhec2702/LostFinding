@@ -1,5 +1,6 @@
 package com.example.darren.lostfinding;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,8 +45,8 @@ import net.sourceforge.simcpux.uikit.MMAlert;
 import net.sourceforge.simcpux.wxapi.WXEntryActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private String decodeResult;
-    private Button scanButton,memberButoon,marketButoon,ChatButoon,msgButton;
+    private ImageView ivPerson;
+    private LinearLayout linearCamera, linearPublish,linearChat,linearMall;
     private TextView scanResult;
     private TextView positionView;
     final String logTag = "LostFinding";
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isPositionStart = false;
     private Gdata app;
     private String memUrl="http://192.168.0.88:8080/WHOS/member.jsp";
+
     Runnable posRunnable = new Runnable() {
         @Override
         public void run() {
@@ -81,20 +84,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = (Gdata)getApplication();
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        scanButton = (Button) findViewById(R.id.scanner);
-        memberButoon = (Button) findViewById(R.id.member);
-        marketButoon = (Button) findViewById(R.id.market);
-        ChatButoon = (Button) findViewById(R.id.chat);
-        msgButton=(Button) findViewById(R.id.msg);
+        setContentView(R.layout.main);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         scanResult = (TextView) findViewById(R.id.scanResult);
-        //testButoon=(Button) findViewById(R.id.test);
-        positionView = (TextView) findViewById(R.id.positionText);
+        //positionView = (TextView) findViewById(R.id.positionText);
         posUpdate = new PositionUpdate(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,45 +106,18 @@ public class MainActivity extends AppCompatActivity {
                     positionView.setText("stopped");
                 }
             }
-        });
+        });*/
 
-        scanButton.setOnClickListener(new View.OnClickListener() {
+        linearChat=(LinearLayout) findViewById(R.id.linear_main_chat);
+        linearChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent scanIntent = new Intent(MainActivity.this, CaptureActivity.class);
-                startActivityForResult(scanIntent, 0);
-            }
-        });
-
-        memberButoon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                app.getClient().getAsyn(memUrl, new MyClient.ResultCallback<String>() {
-                    @Override
-                    public void onError(Request request, Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(String u) {
-                        Intent result = new Intent(MainActivity.this, BrowserAcitvity.class);
-                        result.putExtra("result", u);
-                        startActivity(result);
-                    }
-                });
-            }
-        });
-        ChatButoon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
                 Intent result = new Intent(MainActivity.this, ChatActivity.class);
                 startActivity(result);
-
             }
         });
-
-        msgButton.setOnClickListener(new View.OnClickListener() {
+        /*
+        linearChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -155,9 +125,59 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(result);
 
             }
+        });*/
+
+        //个人中心
+        ivPerson = (ImageView) findViewById(R.id.iv_main_self);
+
+        ivPerson.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                // new AlertDialog.Builder(Mai)
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("个人中心")
+                        .setItems(
+                                new String[] { "定制服务", "已购买二维码", "已扫二维码", "更多" },
+                                null).setNegativeButton("确定", null).show();
+            }
+        });
+        //扫码
+        linearCamera = (LinearLayout) findViewById(R.id.linear_main_camera);
+        linearCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent scanIntent = new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(scanIntent, 0);
+            }
         });
 
+        linearPublish = (LinearLayout) findViewById(R.id.linear_main_publish);
+        linearPublish.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, PublishActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        linearMall=(LinearLayout) findViewById(R.id.linear_main_mall);
+        linearMall.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, MallActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 }

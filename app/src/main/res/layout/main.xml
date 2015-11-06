@@ -1,21 +1,173 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:weightSum="1" android:background="#028ec9" android:padding="12dip">
-    <TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#ffffff" android:textSize="24dip" android:textStyle="bold" android:gravity="center" android:paddingBottom="16dip" android:text="Autobahn Echo Client"></TextView>
-    <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:textColor="@color/background_material_dark" android:text="Autobahn Server Hostname / Port"></TextView>
-    <LinearLayout android:layout_width="match_parent" android:id="@+id/linearLayout1" android:layout_height="wrap_content">
-        <EditText android:id="@+id/hostname" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/background_material_dark"></EditText>
-        <EditText android:id="@+id/port" android:layout_width="match_parent" android:inputType="number" android:layout_height="wrap_content" android:layout_weight="3" android:textColor="@color/background_material_dark"></EditText>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/spi_main_area"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+             />
+
+        <EditText
+            android:id="@+id/et_main_search"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1000"
+            android:hint="搜索" />
+
+        <ImageView
+            android:id="@+id/iv_main_self"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:padding="7dp"
+            android:src="@drawable/selfcenter" />
     </LinearLayout>
-    <Button android:layout_width="120dip" android:layout_gravity="center" android:layout_height="80dip" android:layout_margin="16dip" android:id="@+id/start" android:bufferType="editable" android:text="Button"></Button>
-    <TextView  
-	    android:layout_width="fill_parent" 
-	    android:layout_height="wrap_content" 
-	    android:textColor="@color/background_material_dark" android:id="@+id/statusline" android:text="Ready." android:textSize="14dip" android:layout_marginBottom="24dip"/>
-    <TextView android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceSmall" android:textColor="@color/background_material_dark" android:text="Message to echo"></TextView>
-    <EditText android:id="@+id/msg" android:layout_width="match_parent" android:textColor="@color/background_material_dark" android:text="Hello, world!" android:maxLines="1" android:layout_height="wrap_content"></EditText>
-    <Button android:layout_width="120dip" android:layout_gravity="center" android:layout_height="80dip" android:layout_margin="16dip" android:id="@+id/sendMsg" android:bufferType="editable" android:text="Send"></Button>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/black" />
+
+    <LinearLayout
+        android:id="@+id/linear_main_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1000"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/black" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linear_main_mall"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1000"
+                android:src="@drawable/shop" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="商店"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_main_camera"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1000"
+                android:src="@drawable/scan" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="扫一扫"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_main_publish"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1000"
+                android:src="@drawable/release" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="发布"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_main_chat"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1000"
+                android:src="@drawable/message" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="消息"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1000"
+                android:src="@drawable/goodguyworld" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:text="好人榜"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

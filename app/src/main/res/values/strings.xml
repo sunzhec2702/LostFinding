@@ -1,6 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LostFinding</string>
+
+    <string name="app_name">Whose</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="title_activity_capture">扫码</string>
+    <string name="title_activity_regist">加入谁的</string>
+    <string name="title_activity_forget">忘记密码</string>
+    <string name="title_activity_main">谁的</string>
+    <string name="title_activity_test">MainActivity</string>
+    <string name="title_activity_publish">公告板</string>
+    <string name="title_activity_chat">聊聊</string>
+    <string name="title_activity_mall">商城</string>
+    <string name="title_activity_bill">MainActivity</string>
+    <string name="title_activity_login">谁的？</string>
     <string name="placeHolder">placeHolder</string>
     <string name="seekbar_add">+</string>
     <string name="seekbar_minus">-</string>
@@ -9,7 +23,6 @@
     <string name="bottom_hint">Please make sure the distance is 10cm</string>
     <string name="top_hint">Put the QR into the square</string>
     <string name="cancel">cancel</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="app_picker_name">Applications</string>
     <string name="bookmark_picker_name">Bookmarks</string>
     <string name="button_add_calendar">Add to calendar</string>
@@ -62,7 +75,6 @@
     <string name="msg_default_status">Place a barcode inside the viewfinder rectangle to scan it.</string>
     <string name="msg_unmount_usb">Sorry, the SD card is not accessible.</string>
     <string name="msg_encode_contents_failed">Could not encode a barcode from the data provided.</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -201,4 +213,7 @@
     <string name="unregister_from_weixin">从微信反注册</string>
 
     <string name="show_from_wx_tip">这个界面用于显示微信向第三方app请求显示的信息</string>
+
 </resources>
+
+
