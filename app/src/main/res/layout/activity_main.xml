@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.zmytestdemo.MainActivity" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/black"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_Bill_Back"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_BillTiTLE"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_toRightOf="@id/iv_Bill_Back"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:text="确认交易"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_Bill_payWay"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/tv_BillTiTLE"
+            android:layout_toRightOf="@id/iv_Bill_Back"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:text="“谁的”安全支付"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="谁的-订单编号 110191201314"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="￥ 243.1"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="#F5F5F5">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:paddingLeft="10dp"
+            android:paddingRight="0dp"
+            android:text="收款方" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:paddingLeft="00dp"
+            android:paddingRight="10dp"
+            android:text="“谁的.CC”" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:text="立即支付"
+        android:gravity="center"
+        android:background="#3CB371" />
+
+</LinearLayout>

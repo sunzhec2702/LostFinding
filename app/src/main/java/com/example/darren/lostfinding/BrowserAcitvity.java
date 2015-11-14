@@ -30,7 +30,6 @@ import java.io.IOException;
  * Created by cyclONE on 2015/10/22.
  */
 public class BrowserAcitvity extends Activity {
-    public String TestUrl="http://192.168.0.88:8080/WHOS/find.view?ID=00000001";
     TextView testResult;
     String tt;
     //private Button backButton;
@@ -43,13 +42,13 @@ public class BrowserAcitvity extends Activity {
         setContentView(R.layout.browser);
         Intent ihere=this.getIntent();
         final Bundle bhere=ihere.getExtras();
-
+        testResult=(TextView) findViewById(R.id.testtext);
+        testResult.setText(bhere.getString("result"));
         /*if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }*/
-        testResult=(TextView) findViewById(R.id.testtext);
-        testResult.setText(bhere.getString("result"));
+
         /*
         final Handler handler = new Handler() {
             @Override
@@ -71,7 +70,6 @@ public class BrowserAcitvity extends Activity {
                 message.what = 1;
                 handler.sendMessage(message);
             }
-
         });
         thread.start();
         */

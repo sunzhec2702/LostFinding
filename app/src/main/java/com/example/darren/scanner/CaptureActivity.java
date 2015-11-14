@@ -24,12 +24,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.darren.lostfinding.BrowserAcitvity;
+import com.example.darren.lostfinding.AfterScanActivity;
 import com.example.darren.lostfinding.Gdata;
 import com.example.darren.lostfinding.net.MyClient;
-import com.example.darren.scanner.*;
-import com.example.darren.scanner.BeepManager;
-import com.example.darren.scanner.IntentSource;
 import com.example.darren.scanner.camera.CameraManager;
 import com.example.darren.scanner.common.BitmapUtils;
 import com.example.darren.scanner.decode.BitmapDecoder;
@@ -412,11 +409,12 @@ public final class CaptureActivity extends Activity implements
 			}
 
 			@Override
-			public void onResponse(String u) {
-				Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);
+			public String onResponse(String u) {
+				Intent result = new Intent(CaptureActivity.this, AfterScanActivity.class);
 				result.putExtra("result", u);
 				startActivity(result);
 				CaptureActivity.this.finish();
+				return u;
 			}
 		});
 		/*Intent result = new Intent(CaptureActivity.this, BrowserAcitvity.class);

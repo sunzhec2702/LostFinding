@@ -6,11 +6,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class PublishActivity extends Activity {
-	
-	
-	private Button btnCancle,btnOK;
+
+
+	private ImageView ImageBank,ImageOk;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,28 +22,28 @@ public class PublishActivity extends Activity {
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		btnCancle=(Button) findViewById(R.id.btn_publish_cancle);
-		btnOK=(Button) findViewById(R.id.btn_publish_ok);
-		
-		btnCancle.setOnClickListener(new OnClickListener() {
-			
+		ImageBank=(ImageView) findViewById(R.id.iv_publish_bank);
+		ImageOk=(ImageView) findViewById(R.id.iv_publish_ok);
+
+		ImageBank.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				finish();
 			}
 		});
-		btnOK.setOnClickListener(new OnClickListener() {
-			
+		ImageOk.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				finish();
 			}
 		});
-		
-		
+
+
 	}
 
-	
+
 }

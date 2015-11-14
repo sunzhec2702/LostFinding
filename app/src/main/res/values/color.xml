@@ -2,5 +2,8 @@
 <resources>
     <color name="CornflowerBlue">#6495ED</color>
     <color name="red">#FF0000</color>
-    
+    <color name="gray">#D9D9D9</color>
+    <color name="RoyalBlue">#4169E1</color>
+
+
 </resources>

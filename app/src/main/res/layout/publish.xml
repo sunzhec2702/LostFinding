@@ -14,7 +14,8 @@
         android:layout_height="50dp"
         android:orientation="horizontal" >
 
-        <Button
+        <!--
+             <Button
             android:id="@+id/btn_publish_cancle"
             android:layout_width="70dp"
             android:layout_height="fill_parent"
@@ -23,13 +24,21 @@
             android:text="取消"
             android:textColor="@color/white"
             android:textSize="16sp" />
+        -->
+
+        <ImageView
+            android:id="@+id/iv_publish_bank"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/back_black" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1000" />
 
-        <Button
+        <!--
+             <Button
             android:id="@+id/btn_publish_ok"
             android:layout_width="70dp"
             android:layout_height="fill_parent"
@@ -38,6 +47,13 @@
             android:text="确定"
             android:textColor="@color/white"
             android:textSize="16sp" />
+        -->
+
+        <ImageView
+            android:id="@+id/iv_publish_ok"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/publish" />
     </LinearLayout>
 
     <EditText
@@ -50,17 +66,27 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp" >
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
 
         <Button
             android:layout_width="70dp"
             android:layout_height="fill_parent"
-            android:background="@color/CornflowerBlue"
+            android:layout_weight="0.25"
             android:gravity="center"
             android:text="上传图片"
-            android:textColor="@color/white"
             android:textSize="16sp" />
     </LinearLayout>
+    <ImageView 
+        android:id="@+id/iv_publish_review"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/demo"
+       
+        />
+        
 
 </LinearLayout>

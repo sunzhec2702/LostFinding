@@ -6,6 +6,7 @@
     </uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
     </uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -34,32 +35,29 @@
         </activity>
         <activity
             android:name="com.example.darren.scanner.CaptureActivity"
-            android:label="@string/title_activity_capture"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize" >
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="@string/title_activity_capture" >
         </activity>
         <activity
             android:name=".BrowserAcitvity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize" >
         </activity>
-
         <activity
             android:name="net.sourceforge.simcpux.wxapi.WXEntryActivity"
-            android:label="@string/app_name"
             android:exported="true"
-            android:launchMode="singleTop">
-
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
         </activity>
-
         <activity
             android:name="net.sourceforge.simcpux.SendToWXActivity"
             android:label="@string/app_name"
-            android:theme="@style/MMTheme.Basic"/>
-
+            android:theme="@style/MMTheme.Basic" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -87,7 +85,26 @@
             android:name=".BillActivity"
             android:label="@string/title_activity_bill" >
         </activity>
+        <activity android:name=".RestpwActivity" >
+        </activity>
+        <activity android:name=".ShopCheckActivity" >
+        </activity>
+        <activity android:name="com.example.cyc.ChatingActivity" >
+        </activity>
+        <activity android:name=".AfterScanActivity" >
+        </activity>
+        <activity android:name=".AutoTelephoneActivity" >
+        </activity>
+        <activity android:name=".CustomeServiceActivity" >
+        </activity>
+        <activity android:name=".MyQrActivity" >
+        </activity>
+        <activity android:name=".PersonInfomationActivity" >
+        </activity>
+        <activity android:name=".PersonInformationEditActivity" >
+        </activity>
+        <activity android:name="com.example.cyc.EditQrInfoActivity" >
+        </activity>
     </application>
 
 </manifest>
-

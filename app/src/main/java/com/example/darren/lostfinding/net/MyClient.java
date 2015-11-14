@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.ImageView;
 
+import com.example.cyc.Globle;
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Types;
 import com.squareup.okhttp.Call;
@@ -571,7 +572,7 @@ public class MyClient
 
         public abstract void onError(Request request, Exception e);
 
-        public abstract void onResponse(T response);
+        public abstract String onResponse(T response);
     }
 
     public static class Param
@@ -590,5 +591,32 @@ public class MyClient
         String value;
     }
 
+    public void sendConfMsg(String cell){
+        String PRI_confUrl="http://192.168.0.99:8080/WHOS/confirm.do";
+        String PUB_confUrl="http://www.shuide.cc:8112/WHOS/confirm.do";
+        String confUrl= Globle.DEBUG?PRI_confUrl:PUB_confUrl;
+        MyClient.Param[] par=new MyClient.Param[1];
+        par[0]=new MyClient.Param("cell",cell);
+        postAsyn(confUrl, new MyClient.ResultCallback<String>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                e.printStackTrace();
+            }
+            @Override
+            public String onResponse(String u) {
+                return u;
+            }
+        }, par);
+    }
 
+    public String getLatestVersion(String Url) throws IOException {
+        String rr;
+        rr=getAsString(Url);
+        if (rr.indexOf("VERSION")!=-1){
+            return rr;
+        }
+        else {
+            return null;
+        }
+    }
 }

@@ -5,24 +5,22 @@
     android:background="#fff"
     android:orientation="vertical" >
 
-
     <EditText
         android:id="@+id/userID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="输入用户名"
+        android:hint="用户名"
         android:textColor="#000"
         android:textSize="16sp" />
+
     <EditText
         android:id="@+id/pNUM"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="手机号"
-        android:textColor="#000"
         android:textSize="16sp" />
-
     <EditText
         android:id="@+id/et_regist_userPwd"
         android:layout_width="fill_parent"
@@ -41,6 +39,31 @@
         android:inputType="textPassword"
         android:textColor="#000"
         android:textSize="16sp" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="80dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/et_confirm"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
+            android:hint="验证码"
+            android:textColor="#000"
+            android:textSize="16sp" />
+        <Button
+            android:id="@+id/btn_msg"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:text="发送验证码"
+            android:textColor="#000"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -74,12 +97,5 @@
             android:textColor="#000"
             android:textSize="16sp" />
     </LinearLayout>
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
 
-    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ScrollView>
 </LinearLayout>
-

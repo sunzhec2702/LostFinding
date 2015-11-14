@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ListView的头部 -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <!-- 内容 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/head_contentLayout" >
+
+        <!-- 箭头头像、进度条 -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <!-- 箭头 -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/head_arrowImageView"
+                android:src="@drawable/arrow"/>
+
+            <!-- 进度条 -->
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/head_progressBar"/>
+        </FrameLayout>
+
+        <!-- 提示、最近更新 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- 提示 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:id="@+id/head_tipsTextView"
+                android:textSize="@dimen/head_tips_size"
+                android:text="@string/head_tips_text"/>
+
+            <!-- 最近更新 -->
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

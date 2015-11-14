@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="购物车详情"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/demo" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="商品1" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_minus1"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/et_popShopCart_num"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:inputType="number"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_plus1"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="+" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/demo" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="商品2" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_minus2"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/et_popShopCart_num2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:inputType="number"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_plus2"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="+" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:src="@drawable/demo" />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="商品3" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_minus3"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/et_popShopCart_num3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:inputType="number"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btn_popShopCart_plus3"
+                android:layout_width="70dp"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:text="+" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1000" >
+        </View>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_popShopCart_cancle"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@color/black"
+                android:gravity="center"
+                android:text="返回"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_popShopCart_ok"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

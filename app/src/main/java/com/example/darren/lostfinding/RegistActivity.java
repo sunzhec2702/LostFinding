@@ -17,26 +17,26 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.cyc.Globle;
 import com.example.darren.lostfinding.net.MyClient;
 import com.squareup.okhttp.Request;
 
-import net.sourceforge.simcpux.wxapi.WXEntryActivity;
-
 public class RegistActivity extends Activity {
-
-	private Button btnBack, btnRegist;
-	private EditText pwet,useret,cellet,rpwet;
+	public boolean DEBUG=false;
+	private Button btnBack, btnRegist,btnConf;
+	private EditText pwet,useret,cellet,rpwet,confet;
 	private Gdata app;
 	private View mProgressView;
-	private View mLoginFormView;
 	RegistActivity la=this;
-	private String loginUrl="http://192.168.0.88:8080/WHOS/register.do";
+	private String PRI_loginUrl="http://192.168.0.88:8080/WHOS/register.do";
+	private String PUB_loginUrl="http://www.shuide.cc:8112/WHOS/register.do";
+	private String loginUrl= Globle.DEBUG?PRI_loginUrl:PUB_loginUrl;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,9 +47,23 @@ public class RegistActivity extends Activity {
 			public void handleMessage(Message msg) {
 				super.handleMessage(msg);
 				if (msg.what == 1) {
-					Intent result = new Intent(RegistActivity.this, MainActivity.class);
+					Intent result = new Intent(RegistActivity.this, LoginActivity.class);
 					startActivity(result);
 					la.finish();
+				}
+			}
+		};
+
+		final Handler hUI = new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				super.handleMessage(msg);
+				if (msg.what != 0) {
+					btnConf.setEnabled(false);
+					btnConf.setText("等待" + msg.what + "秒后重新发送");
+				}else{
+					btnConf.setText("获取验证码");
+					btnConf.setEnabled(true);
 				}
 			}
 		};
@@ -61,6 +75,32 @@ public class RegistActivity extends Activity {
 				attemptLogin(handler);
 			}
 		});
+		btnConf.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				String cell = cellet.getText().toString();
+				app.getClient().sendConfMsg(cell);
+				Thread thread = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						int tick = 60;
+						while (tick != 0) {
+							try {
+								Thread.sleep(1000);
+								tick--;
+								Message message = new Message();
+								message.what = tick;
+								hUI.sendMessage(message);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				});
+				thread.start();
+			}
+		});
+
 	}
 
 	private void initView() {
@@ -71,8 +111,9 @@ public class RegistActivity extends Activity {
 		cellet=(EditText)findViewById(R.id.pNUM);
 		pwet=(EditText)findViewById(R.id.et_regist_userPwd);
 		rpwet=(EditText)findViewById(R.id.rp_userPwd);
-		mLoginFormView = findViewById(R.id.login_form);
 		mProgressView = findViewById(R.id.login_progress);
+		btnConf=(Button) findViewById(R.id.btn_msg);
+		confet=(EditText)findViewById(R.id.et_confirm);
 
 	}
 
@@ -97,9 +138,15 @@ public class RegistActivity extends Activity {
 		String cell = cellet.getText().toString();
 		String password = pwet.getText().toString();
 		String c_password = rpwet.getText().toString();
-
+		String conf = confet.getText().toString();
 		boolean cancel = false;
 		View focusView = null;
+
+		if(password.compareTo(c_password)!=0){
+			pwet.setError("两次密码不一致");
+			focusView = pwet;
+			cancel = true;
+		}
 
 		// Check for a valid password, if the user entered one.
 		if (TextUtils.isEmpty(password)) {
@@ -107,8 +154,6 @@ public class RegistActivity extends Activity {
 			focusView = pwet;
 			cancel = true;
 		}
-
-
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
@@ -116,12 +161,12 @@ public class RegistActivity extends Activity {
 		} else {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			//showProgress(true);
+			showProgress(true);
 			MyClient.Param[] par=new MyClient.Param[4];
 			par[0]=new MyClient.Param("username",username);
 			par[1]=new MyClient.Param("email",cell);
 			par[2]=new MyClient.Param("password",password);
-			par[3]=new MyClient.Param("confirmedPasswd",c_password);
+			par[3]=new MyClient.Param("confirm",conf);
 			app.setName(username);
 			app.getSocket();
 			app.getClient().postAsyn(loginUrl, new MyClient.ResultCallback<String>() {
@@ -130,7 +175,7 @@ public class RegistActivity extends Activity {
 					e.printStackTrace();
 				}
 				@Override
-				public void onResponse(String u) {
+				public String onResponse(String u) {
 					if (u.indexOf("成功") != -1) {
 						Message message = new Message();
 						message.what = 1;
@@ -141,6 +186,7 @@ public class RegistActivity extends Activity {
 						handler.sendMessage(message);
 					}
 					//mTv.setText(u);//注意这里是UI线程
+					return u;
 				}
 			}, par);
 		}
@@ -158,14 +204,6 @@ public class RegistActivity extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
 			int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-			mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-					show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-				@Override
-				public void onAnimationEnd(Animator animation) {
-					mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-				}
-			});
 
 			mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
 			mProgressView.animate().setDuration(shortAnimTime).alpha(
@@ -179,7 +217,6 @@ public class RegistActivity extends Activity {
 			// The ViewPropertyAnimator APIs are not available, so simply show
 			// and hide the relevant UI components.
 			mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
 		}
 	}
 }
