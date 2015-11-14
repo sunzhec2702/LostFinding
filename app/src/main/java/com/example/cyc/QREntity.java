@@ -5,15 +5,15 @@ package com.example.cyc;
  */
 public class QREntity {
     private String id;
-    private String statu;
+    private int statu;
     public QREntity(String s1, String s2){
         id =s1;
-        statu=s2;
+        statu=Integer.parseInt(s2);
     }
     public String getId(){
         return id;
     }
-    public String getStatu(){
+    public int getStatu(){
         return  statu;
     }
 }

@@ -41,39 +41,6 @@
         android:layout_height="2dp"
         android:layout_marginTop="2dp"
         android:background="@color/black" />
-    <RelativeLayout
-        android:id="@+id/head_contentLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="30dp" >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <!-- 提示 -->
-
-            <TextView
-                android:id="@+id/head_tipsTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="下拉刷新"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
-
-            <!-- 最近更新 -->
-
-            <TextView
-                android:id="@+id/head_lastUpdatedTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="最近更新"
-                android:textColor="#cc6600"
-                android:textSize="10sp" />
-        </LinearLayout>
-    </RelativeLayout>
     <com.example.cyc.MyListView
         android:id="@+id/lv_main_main"
         android:layout_width="fill_parent"
@@ -162,6 +129,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linear_main_chat"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="5dp"

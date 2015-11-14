@@ -39,7 +39,7 @@ public class MyListView extends ListView implements OnScrollListener {
     private LayoutInflater mInflater;
     private LinearLayout mHeadView;
     private TextView mTipsTextView;
-    private TextView mLastUpdatedTextView;
+    //private TextView mLastUpdatedTextView;
     private ImageView mArrowImageView;
     private ProgressBar mProgressBar;
 
@@ -69,7 +69,7 @@ public class MyListView extends ListView implements OnScrollListener {
 //        mArrowImageView.setMinimumHeight(50);
         mProgressBar = (ProgressBar) mHeadView.findViewById(R.id.head_progressBar);
         mTipsTextView = (TextView) mHeadView.findViewById(R.id.head_tipsTextView);
-        mLastUpdatedTextView = (TextView) mHeadView.findViewById(R.id.head_lastUpdatedTextView);
+        //mLastUpdatedTextView = (TextView) mHeadView.findViewById(R.id.head_lastUpdatedTextView);
 
         measureView(mHeadView);
         mHeadContentHeight = mHeadView.getMeasuredHeight();
@@ -139,7 +139,7 @@ public class MyListView extends ListView implements OnScrollListener {
 
     public void onRefreshComplete() {
         mState = DONE;
-        mLastUpdatedTextView.setText("已加载完成：" + new Date().toLocaleString());
+        //mLastUpdatedTextView.setText("已加载完成：" + new Date().toLocaleString());
         changeHeaderViewByState();
     }
 
@@ -237,7 +237,7 @@ public class MyListView extends ListView implements OnScrollListener {
             case PULL_TO_REFRESH:
                 mProgressBar.setVisibility(GONE);
                 mTipsTextView.setVisibility(VISIBLE);
-                mLastUpdatedTextView.setVisibility(VISIBLE);
+                //mLastUpdatedTextView.setVisibility(VISIBLE);
                 mArrowImageView.clearAnimation();
                 mArrowImageView.setVisibility(VISIBLE);
                 if(mIsBack) {
@@ -256,7 +256,7 @@ public class MyListView extends ListView implements OnScrollListener {
                 mArrowImageView.clearAnimation();
                 mArrowImageView.setImageResource(R.drawable.arrow);
                 mTipsTextView.setText("已经加载完毕-DONE");
-                mLastUpdatedTextView.setVisibility(VISIBLE);
+                //mLastUpdatedTextView.setVisibility(VISIBLE);
                 break;
 
             case REFRESHING:
@@ -271,7 +271,7 @@ public class MyListView extends ListView implements OnScrollListener {
                 mArrowImageView.setVisibility(VISIBLE);
                 mProgressBar.setVisibility(GONE);
                 mTipsTextView.setVisibility(VISIBLE);
-                mLastUpdatedTextView.setVisibility(VISIBLE);
+                //mLastUpdatedTextView.setVisibility(VISIBLE);
                 mArrowImageView.clearAnimation();
                 mArrowImageView.startAnimation(mAnimation);
                 mTipsTextView.setText("请释放刷新");
@@ -283,7 +283,7 @@ public class MyListView extends ListView implements OnScrollListener {
 
     @Override
     public void setAdapter(ListAdapter adapter) {
-        mLastUpdatedTextView.setText("this is in MyListView:" + new Date().toLocaleString());
+        //mLastUpdatedTextView.setText("this is in MyListView:" + new Date().toLocaleString());
         super.setAdapter(adapter);
     }
 }

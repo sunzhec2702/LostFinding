@@ -61,10 +61,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ChatActivity"
-            android:label="@string/title_activity_chat" >
-        </activity>
+
         <activity
             android:name=".PublishActivity"
             android:label="@string/title_activity_publish" >
@@ -104,6 +101,9 @@
         <activity android:name=".PersonInformationEditActivity" >
         </activity>
         <activity android:name="com.example.cyc.EditQrInfoActivity" >
+        </activity>
+        <activity
+            android:name=".ChatActivity" >
         </activity>
     </application>
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/tv_ItemLvGoodPerson_num"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Top 1"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/iv_ItemLvGoodPerson_icon"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_ItemLvGoodPerson_nickName"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:text="昵称" />
+
+    <ImageView
+        android:id="@+id/iv_ItemLvGoodPerson_star"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="0.8" />
+
+    <TextView
+        android:id="@+id/tv_ItemLvGoodPerson_startNum"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="1" />
+
+</LinearLayout>

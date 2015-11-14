@@ -71,7 +71,6 @@ public class EditQrInfoActivity extends AppCompatActivity {
                     public void onError(Request request, Exception e) {
                         e.printStackTrace();
                     }
-
                     @Override
                     public String onResponse(String u) {
                         return u;

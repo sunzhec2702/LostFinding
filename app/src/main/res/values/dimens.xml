@@ -3,8 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="head_tips_size">6dp</dimen>
-    <dimen name="last_updated_size">8dp</dimen>
+    <dimen name="head_tips_size">16dp</dimen>
+    <dimen name="last_updated_size">12dp</dimen>
     <dimen name="standard_padding">8dip</dimen>
     <dimen name="half_padding">4dip</dimen>
     <dimen name="LargeTextSize">16dp</dimen>

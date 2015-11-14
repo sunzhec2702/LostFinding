@@ -8,19 +8,20 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/demo" />
-	
-    <TextView 
+
+    <TextView
         android:id="@+id/tv_itemMain_content"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_weight="1000"
         android:text="二维码说明"
         android:gravity="center"
+        android:textColor="@color/black"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         />
-    <LinearLayout 
-        android:layout_width="50dp"
+    <LinearLayout
+        android:layout_width="150dp"
         android:layout_height="60dp"
         android:orientation="vertical"
         >
@@ -28,10 +29,10 @@
             android:id="@+id/v_itemMain_state"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="60dp"
             android:background="@color/CornflowerBlue"
             />
-        <TextView 
+        <TextView
              android:id="@+id/tv_itemMain_state"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -40,9 +41,9 @@
             android:background="@color/white"
             android:gravity="center"
             android:textSize="16sp"
-            
+
             />
-        
+
     </LinearLayout>
-    
+
 </LinearLayout>

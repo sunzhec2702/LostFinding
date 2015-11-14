@@ -18,45 +18,19 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/frame"
-            android:text="已购" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.5" >
-        </View>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/frame"
-            android:text="已扫" />
-    </LinearLayout>
-
-    <ListView
+    <com.example.cyc.MyListView
         android:id="@+id/lv_MyQR_items"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:drawSelectorOnTop="true" 
         android:layout_weight="1000">
-    </ListView>
+    </com.example.cyc.MyListView>
     
-    <Button 
+    <Button
+        android:id="@+id/back"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
-        android:text="导出"
+        android:text="返回"
         android:textColor="@color/white"
         android:background="@color/CornflowerBlue"
         />

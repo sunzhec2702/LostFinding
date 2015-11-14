@@ -16,6 +16,6 @@ public class Runnable {
 	@SuppressLint("NewApi")
 	@SuppressWarnings("unchecked")
 	public static void execAsync(AsyncTask<?, ?, ?> task) {
-			task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
+		task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
 	}
 }

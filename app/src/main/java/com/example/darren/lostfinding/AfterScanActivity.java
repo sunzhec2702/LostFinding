@@ -22,13 +22,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cyc.ChatMsgEntity;
 import com.example.cyc.ChatingActivity;
 import com.example.cyc.EditQrInfoActivity;
 import com.example.cyc.Globle;
 import com.example.darren.lostfinding.net.MyClient;
 import com.squareup.okhttp.Request;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AfterScanActivity extends Activity {
 
@@ -237,7 +240,7 @@ public class AfterScanActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put(owner,"你好");
+				map.put(owner,"ALOHA");
 				app.saveMsg("chat", map);
 				Intent result = new Intent(AfterScanActivity.this,
 						ChatingActivity.class);
@@ -272,7 +275,6 @@ public class AfterScanActivity extends Activity {
 					map.put("method", "return");
 					app.getClient().postAsyn(manageUrl,RC,map);
 				}
-
 				finish();
 			}
 		};

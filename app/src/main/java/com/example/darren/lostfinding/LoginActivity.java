@@ -176,6 +176,11 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public String onResponse(String u) {
                     if (u.indexOf("欢迎") != -1) {
+                        if(u.indexOf("公用品管理员") != -1){
+                            app.setPUB(true);
+                        }else{
+                            app.setPUB(false);
+                        }
                         app.setName(name);
                         app.getSocket();
                         HashMap<String, Object> map = new HashMap<String, Object>();
@@ -215,6 +220,11 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public String onResponse(String u) {
                     if (u.indexOf("欢迎") != -1) {
+                        if(u.indexOf("公用品管理员") != -1){
+                            app.setPUB(true);
+                        }else{
+                            app.setPUB(false);
+                        }
                         app.setName(name);
                         app.getSocket();
                         HashMap<String, Object> map = new HashMap<String, Object>();

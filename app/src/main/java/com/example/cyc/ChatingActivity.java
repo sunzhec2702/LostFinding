@@ -5,7 +5,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -58,6 +62,8 @@ public class ChatingActivity extends Activity implements OnClickListener {
     private String voiceName;
     private long startVoiceT, endVoiceT;
     private Gdata app;
+    private List<ChatMsgEntity> chatList;
+
     private WebSocket socket= null;
     private String srcID;
     private String dstID=null;
@@ -77,7 +83,6 @@ public class ChatingActivity extends Activity implements OnClickListener {
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         initView();
-
         socket.setUI(handler);
         //initData();
     }
@@ -86,12 +91,13 @@ public class ChatingActivity extends Activity implements OnClickListener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
             if (msg.what == 1) {
-                ChatMsgEntity cmr=ChatMsgEntity.parseString((String) msg.obj);
-                mDataArrays.add(cmr);
-                mAdapter.notifyDataSetChanged();
-                mListView.setSelection(mListView.getCount() - 1);
+                ArrayList<ChatMsgEntity> CL=app.getChatData().get(dstID);
+                if(CL!=null){
+                    mDataArrays=CL;
+                    mAdapter.notifyDataSetChanged();
+                    mListView.setSelection(mListView.getCount() - 1);
+                }
             }
         }
     };
@@ -121,6 +127,14 @@ public class ChatingActivity extends Activity implements OnClickListener {
                 .findViewById(R.id.voice_rcd_hint_tooshort);
         mSensor = new SoundMeter();
         mEditTextContent = (EditText) findViewById(R.id.et_sendmessage);
+        try {
+            socket = new WebSocket(new URI(ServUrl + srcID+"/"+dstID));
+            socket.connectBlocking();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         /*
         chatting_mode_btn.setOnClickListener(new OnClickListener() {
 
@@ -143,6 +157,11 @@ public class ChatingActivity extends Activity implements OnClickListener {
             }
         });
         */
+        chatList = app.getChatData().get(dstID);
+        if (chatList != null && !chatList.isEmpty()) {
+            mDataArrays=chatList;
+        }
+
         mBtnRcd.setOnTouchListener(new OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
@@ -152,35 +171,6 @@ public class ChatingActivity extends Activity implements OnClickListener {
         mAdapter = new ChatMsgViewAdapter(this, mDataArrays);
         mListView.setAdapter(mAdapter);
     }
-    /*
-	private String[] msgArray = new String[] { "���˾��ж�Թ","�ж�Թ���н���","�˾��ǽ���","����ô�˳��� ","�����г������ɺ�","����ƽ����Ҳ�����ཻ��һ�졣"};
-
-	private String[] dataArray = new String[] { "2012-10-31 18:00",
-			"2012-10-31 18:10", "2012-10-31 18:11", "2012-10-31 18:20",
-			"2012-10-31 18:30", "2012-10-31 18:35"};
-	private final static int COUNT = 6;
-
-	public void initData() {
-		for (int i = 0; i < COUNT; i++) {
-			ChatMsgEntity entity = new ChatMsgEntity();
-			entity.setDate(dataArray[i]);
-			if (i % 2 == 0) {
-				entity.setName("�׸���");
-				entity.setMsgType(true);
-			} else {
-				entity.setName("�߸�˧");
-				entity.setMsgType(false);
-			}
-
-			entity.setText(msgArray[i]);
-			mDataArrays.add(entity);
-		}
-
-		mAdapter = new ChatMsgViewAdapter(this, mDataArrays);
-		mListView.setAdapter(mAdapter);
-
-	}*/
-
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
@@ -206,24 +196,10 @@ public class ChatingActivity extends Activity implements OnClickListener {
             mDataArrays.add(entity);
             mAdapter.notifyDataSetChanged();
 
-
-            //------------网络通信----------------
-            if (app.getChat()==null ||dstID==null|| dstID.compareTo(app.getChat()) != 0) {
-                try {
-                    socket = new WebSocket(new URI(ServUrl + srcID+"/"+dstID));
-                    socket.connectBlocking();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            String rr=mDataArrays.get(mDataArrays.size()-1).toString();
+            //String rr=mDataArrays.get(mDataArrays.size()-1).toString();
             socket.send(mDataArrays.get(mDataArrays.size()-1).toString());
             //--------------------
             mEditTextContent.setText("");
-
             mListView.setSelection(mListView.getCount() - 1);
 
         }

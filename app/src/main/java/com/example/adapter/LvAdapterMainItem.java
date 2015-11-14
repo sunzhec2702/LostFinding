@@ -25,6 +25,7 @@ import com.squareup.okhttp.Request;
 
 
 public class LvAdapterMainItem extends BaseAdapter {
+	private boolean PUB;
 	private Context context;
 	private List<QREntity> items = new ArrayList<QREntity>();
 	Handler hUI;
@@ -32,8 +33,9 @@ public class LvAdapterMainItem extends BaseAdapter {
 		hUI=h;
 	}
 
-	public LvAdapterMainItem(Context context, List<QREntity> items) {
+	public LvAdapterMainItem(Context context, List<QREntity> items,boolean b) {
 		super();
+		PUB=b;
 		this.context = context;
 		this.items = items;
 	}
@@ -66,9 +68,9 @@ public class LvAdapterMainItem extends BaseAdapter {
 			reHoder = new ReHolderView();
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.item_lv_main_qr, null);
-			reHoder.tv1 = (TextView) convertView
-					.findViewById(R.id.tv_itemMain_content);
 			reHoder.tv2 = (TextView) convertView
+					.findViewById(R.id.tv_itemMain_content);
+			reHoder.tv1 = (TextView) convertView
 					.findViewById(R.id.tv_itemMain_state);
 			reHoder.v = convertView.findViewById(R.id.v_itemMain_state);
 			// 设置控件集到convertView
@@ -78,7 +80,26 @@ public class LvAdapterMainItem extends BaseAdapter {
 		}
 		// 设置文本内容
 		reHoder.tv1.setText(items.get(position).getId());
-		reHoder.tv2.setText(items.get(position).getStatu());
+
+		switch (items.get(position).getStatu()){
+			case 1:
+				reHoder.tv2.setText("二维码尚未绑定物品");
+				break;
+			case 2:
+				if (PUB){
+					reHoder.tv2.setText("物品在库中");
+				}else{
+					reHoder.tv2.setText("物品状态正常");
+				}
+				break;
+			case 3:
+				if (PUB){
+					reHoder.tv2.setText("物品已被别人捡到");
+				}else{
+					reHoder.tv2.setText("物品借出");
+				}
+				break;
+		}
 		/*
 		switch (position % 3) {
 		case 0:
@@ -92,10 +113,9 @@ public class LvAdapterMainItem extends BaseAdapter {
 			break;
 		}
 		*/
-
 		// 设置文本监听
 		final String rr=items.get(position).getId();
-		reHoder.tv1.setOnClickListener(new OnClickListener() {
+		reHoder.tv2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Message message = new Message();

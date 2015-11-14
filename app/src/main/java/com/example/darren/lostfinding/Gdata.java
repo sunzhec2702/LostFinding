@@ -1,14 +1,18 @@
 package com.example.darren.lostfinding;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.cyc.ChatMsgEntity;
 import com.example.cyc.Globle;
 import com.example.darren.lostfinding.net.MyClient;
 import com.example.darren.lostfinding.net.WebSocket;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,7 +26,10 @@ public class Gdata extends Application{
     private final String ServUrl= Globle.DEBUG?PRI_ServUrl:PUB_ServUrl;
     public String name;
     public String chatName=null;
+    private boolean PUB=false;
     private int[] itemNum = { 0, 0, 0 };
+
+    private HashMap<String ,ArrayList<ChatMsgEntity>> ChatData;
 
     public int[] getItemNum() {
         return itemNum;
@@ -38,10 +45,17 @@ public class Gdata extends Application{
     public String getName(){
         return name;
     }
+    public void setPUB(boolean n){
+        PUB=n;
+    }
+    public boolean getPUB(){
+        return PUB;
+    }
     public WebSocket getSocket(){
         if (this.ws==null){
             try {
                 this.ws = new WebSocket(new URI(ServUrl + name+"/"+name));
+                this.ws.setAPP(this);
                 this.ws.connectBlocking();
             } catch (URISyntaxException e) {
                 e.printStackTrace();
@@ -66,6 +80,10 @@ public class Gdata extends Application{
     public void onCreate(){
         super.onCreate();
         cyc.getInstance();
+        ChatData=new HashMap<String ,ArrayList<ChatMsgEntity>>();
+    }
+    public HashMap<String ,ArrayList<ChatMsgEntity>> getChatData(){
+        return ChatData;
     }
 
     public boolean saveMsg(String fileName, Map<String, Object> map) {
@@ -120,5 +138,14 @@ public class Gdata extends Application{
                 Context.MODE_APPEND);
         //Context.MODE_APPEND可以对已存在的值进行修改
         preferences.edit().clear().commit();
+    }
+
+    public void delLog(String name,String Key) {
+        Map<String, ?> map = null;
+        // 读取数据用不到edit
+        SharedPreferences preferences = getSharedPreferences(name,
+                Context.MODE_APPEND);
+        //Context.MODE_APPEND可以对已存在的值进行修改
+        preferences.edit().remove(Key).commit();
     }
 }
