@@ -78,7 +78,7 @@ public class ChatMsgEntity {
         p2=s.substring(s.indexOf("DATE@#$=")+"DATE@#$=".length(),s.indexOf("TEXT@#$="));
         p3=s.substring(s.indexOf("TEXT@#$=")+"TEXT@#$=".length(),s.indexOf("COME@#$="));
         p4=s.substring(s.indexOf("COME@#$=")+"COME@#$=".length());
-        boolean c=p4.indexOf("FFF")==-1?false:true;
+        boolean c=p4.indexOf("FFF")>0?false:true;
         return new ChatMsgEntity(p1,p2,p3,c);
     }
 }

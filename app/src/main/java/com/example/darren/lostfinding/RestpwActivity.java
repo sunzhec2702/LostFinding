@@ -23,9 +23,6 @@ public class RestpwActivity extends AppCompatActivity {
     private Gdata app;
     private View mProgressView;
     private String cell;
-    private String PRI_confUrl="http://192.168.0.88:8080/WHOS/register.do";
-    private String PUB_confUrl="http://www.shuide.cc:8112/WHOS/register.do";
-    private String confUrl= Globle.DEBUG?PRI_confUrl:PUB_confUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +72,7 @@ public class RestpwActivity extends AppCompatActivity {
                 MyClient.Param[] par=new MyClient.Param[2];
                 par[0]=new MyClient.Param("key",cell);
                 par[1]=new MyClient.Param("reset",pw1);
-                app.getClient().postAsyn(confUrl, new MyClient.ResultCallback<String>() {
+                MyClient.postAsyn(app.regist_add, new MyClient.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         e.printStackTrace();

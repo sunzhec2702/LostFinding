@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white"
     android:orientation="horizontal" >
 
     <TextView
@@ -13,12 +14,12 @@
         android:text="Top 1"
         android:textColor="@color/black" />
 
-    <ImageView
+    <com.example.cyc.CircleImageView
         android:id="@+id/iv_ItemLvGoodPerson_icon"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/tv_ItemLvGoodPerson_nickName"

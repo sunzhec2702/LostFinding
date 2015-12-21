@@ -13,9 +13,12 @@
 
         <TextView
             android:id="@+id/tv_sendtime"
-            style="@style/chat_content_date_style"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:background="#bfbfbf"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -24,13 +27,12 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp" >
 
-        <ImageView
+        <com.example.cyc.CircleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/abaose"
             android:clickable="true"
              />
 

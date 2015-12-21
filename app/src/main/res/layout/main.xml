@@ -9,23 +9,26 @@
         android:layout_height="50dp"
         android:orientation="horizontal" >
 
-       <!--  <Spinner
-            android:id="@+id/spi_main_area"
-            android:layout_width="100dp"
-            android:layout_height="fill_parent"
-             /> -->
-        
-         <ImageView
+        <!--  <Spinner
+             android:id="@+id/spi_main_area"
+             android:layout_width="100dp"
+             android:layout_height="fill_parent"
+              /> -->
+
+        <ImageView
             android:id="@+id/iv_publish_bank"
             android:layout_width="40dp"
             android:layout_height="fill_parent"
             android:src="@drawable/back_black" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_main_search"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1000"
+            android:text="谁的——让生活更简单"
+            android:textSize="20sp"
+            android:gravity="center"
             android:hint="搜索" />
 
         <ImageView
@@ -41,12 +44,24 @@
         android:layout_height="2dp"
         android:layout_marginTop="2dp"
         android:background="@color/black" />
-    <com.example.cyc.MyListView
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="好人榜"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:background="@color/CornflowerBlue"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        />
+    <ListView
         android:id="@+id/lv_main_main"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="1000">
-    </com.example.cyc.MyListView>
+        android:layout_weight="1000"
+        >
+    </ListView>
 
     <View
         android:layout_width="fill_parent"
@@ -137,6 +152,7 @@
             android:orientation="vertical" >
 
             <ImageView
+                android:id="@+id/cv"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1000"
@@ -152,6 +168,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linear_public"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="5dp"

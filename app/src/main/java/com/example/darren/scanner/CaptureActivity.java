@@ -40,6 +40,9 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ResultParser;
 import com.squareup.okhttp.Request;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * This activity opens the camera and does the actual scanning on a background
  * thread. It draws a viewfinder to help the user place the barcode correctly,
@@ -402,7 +405,7 @@ public final class CaptureActivity extends Activity implements
 		Intent result = new Intent();
 		result.putExtra("result", ResultParser.parseResult(rawResult).toString());
 		this.setResult(0, result);*/
-		app.getClient().getAsyn(ResultParser.parseResult(rawResult).toString(), new MyClient.ResultCallback<String>() {
+		MyClient.getAsyn(ResultParser.parseResult(rawResult).toString()+"&app=1.0.5", new MyClient.ResultCallback<String>() {
 			@Override
 			public void onError(Request request, Exception e) {
 				e.printStackTrace();
@@ -410,10 +413,18 @@ public final class CaptureActivity extends Activity implements
 
 			@Override
 			public String onResponse(String u) {
-				Intent result = new Intent(CaptureActivity.this, AfterScanActivity.class);
-				result.putExtra("result", u);
-				startActivity(result);
-				CaptureActivity.this.finish();
+				try {
+					JSONObject obj = new JSONObject(u);
+					Intent result = new Intent(CaptureActivity.this, AfterScanActivity.class);
+					result.putExtra("result", u);
+					startActivity(result);
+					CaptureActivity.this.finish();
+				} catch (JSONException e) {
+					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), "这个二维码并不是属于‘谁的’",
+							Toast.LENGTH_SHORT).show();
+					CaptureActivity.this.finish();
+				}
 				return u;
 			}
 		});

@@ -27,6 +27,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.darren.lostfinding.Gdata;
+import com.example.darren.lostfinding.net.MyClient;
 import com.squareup.okhttp.Response;
 
 public class UpdateManager {
@@ -44,10 +45,10 @@ public class UpdateManager {
     private Boolean canceled;
 
 
-    public static final String PRI_UPDATE_DOWNURL = "http:/192.168.0.88:8080/WHOS/update/WHOS.apk";
-    public static final String PUB_UPDATE_DOWNURL = "http:/www.shuide.cc:8112/WHOS/update/WHOS.apk";
-    public static final String PRI_UPDATE_CHECKURL= "http:/192.168.0.88:8080/WHOS/update";
-    public static final String PUB_UPDATE_CHECKURL = "http:/www.shuide.cc:8112/WHOS/update";
+    public static final String PRI_UPDATE_DOWNURL = "http:/192.168.0.88:8080/web_whose/update/WHOS.apk";
+    public static final String PUB_UPDATE_DOWNURL = "http:/www.shuide.cc:8112/web_whose/update/WHOS.apk";
+    public static final String PRI_UPDATE_CHECKURL= "http:/192.168.0.88:8080/web_whose/update";
+    public static final String PUB_UPDATE_CHECKURL = "http:/www.shuide.cc:8112/web_whose/update";
 
     public static final String UPDATE_DOWNURL = Globle.DEBUG?PRI_UPDATE_DOWNURL:PUB_UPDATE_DOWNURL;
     public static final String UPDATE_CHECKURL =Globle.DEBUG?PRI_UPDATE_CHECKURL:PUB_UPDATE_CHECKURL;
@@ -103,7 +104,7 @@ public class UpdateManager {
             public void run() {
                 Log.i("@@@@@", ">>>>>>>>>>>>>>>>>>>>>>>>>>>getServerVerCode() ");
                 try {
-                    String verjson = app.getClient().getLatestVersion (UPDATE_CHECKURL);
+                    String verjson = MyClient.getLatestVersion(UPDATE_CHECKURL);
                     if (verjson.length() > 0) {
                         JSONObject JSON = new JSONObject(verjson);
                         try {
@@ -149,7 +150,7 @@ public class UpdateManager {
             @Override
             public void run() {
                 try {
-                    Response res=app.getClient().getAsyn(UPDATE_DOWNURL);
+                    Response res=MyClient.getAsyn(UPDATE_DOWNURL);
                     /*
                     URL url = new URL(UPDATE_DOWNURL);
 

@@ -5,4 +5,5 @@ package com.example.cyc;
  */
 public class Globle {
     public static boolean DEBUG=false;
+    public static String APPDIR="/data/data/com.example.darren.lostfinding/files/";
 }

@@ -1,7 +1,9 @@
 package com.example.darren.lostfinding.net;
 
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.widget.ImageView;
 
 import com.example.cyc.Globle;
@@ -318,7 +320,6 @@ public class MyClient
         return getInstance()._getAsyn(url);
     }
 
-
     public static String getAsString(String url) throws IOException
     {
         return getInstance()._getAsString(url);
@@ -480,17 +481,18 @@ public class MyClient
             {
                 try
                 {
-                    final String string = response.body().string();
                     if (callback.mType == String.class)
                     {
+                        final String string = response.body().string();
                         sendSuccessResultCallback(string, callback);
-                    } else
-                    {
+                    } else if(callback.mType.toString().indexOf("byte")>-1){
+                        final byte[] tt=response.body().bytes();
+                        sendSuccessResultCallback(tt, callback);
+                    }else{
+                        final String string = response.body().string();
                         Object o = mGson.fromJson(string, callback.mType);
                         sendSuccessResultCallback(o, callback);
                     }
-
-
                 } catch (IOException e)
                 {
                     sendFailedStringCallback(response.request(), e, callback);
@@ -502,6 +504,7 @@ public class MyClient
             }
         });
     }
+
 
     private void sendFailedStringCallback(final Request request, final Exception e, final ResultCallback callback)
     {
@@ -591,9 +594,9 @@ public class MyClient
         String value;
     }
 
-    public void sendConfMsg(String cell){
-        String PRI_confUrl="http://192.168.0.99:8080/WHOS/confirm.do";
-        String PUB_confUrl="http://www.shuide.cc:8112/WHOS/confirm.do";
+    public static void sendConfMsg(String cell){
+        String PRI_confUrl="http://192.168.0.99:8080/web_whose/confirm.do";
+        String PUB_confUrl="http://www.shuide.cc:8112/web_whose/confirm.do";
         String confUrl= Globle.DEBUG?PRI_confUrl:PUB_confUrl;
         MyClient.Param[] par=new MyClient.Param[1];
         par[0]=new MyClient.Param("cell",cell);
@@ -609,7 +612,7 @@ public class MyClient
         }, par);
     }
 
-    public String getLatestVersion(String Url) throws IOException {
+    public static String getLatestVersion(String Url) throws IOException {
         String rr;
         rr=getAsString(Url);
         if (rr.indexOf("VERSION")!=-1){

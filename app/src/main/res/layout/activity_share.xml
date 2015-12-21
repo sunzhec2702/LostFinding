@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_share_introduction"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0.72"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/cb_share_greatOrNot"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="90dp"
+        android:layout_weight="0.23"
+        android:checked="true"
+        android:gravity="center_vertical"
+        android:text="是否点赞"
+        android:textSize="15sp" />
+
+    <CheckBox
+        android:id="@+id/cb_share_shareOrNot"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="90dp"
+        android:layout_weight="0.23"
+        android:checked="true"
+        android:gravity="center_vertical"
+        android:text="是否分享到朋友圈"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.2"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5" />
+
+        <Button
+            android:id="@+id/bt_share_cancle"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/CornflowerBlue"
+            android:text="取消"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/bt_share_confirm"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/CornflowerBlue"
+            android:text="发布"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5" />
+    </LinearLayout>
+
+</LinearLayout>

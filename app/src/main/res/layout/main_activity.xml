@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/top_icon"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginLeft="40dip"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="谁的"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:id="@+id/scan"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/selecter_scan_icon" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/tab_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="#EDEDED"/>
+    <RadioGroup
+        android:id="@+id/tabs_rg"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="left">
+        <RadioButton
+            android:id="@+id/tab_rb_a"
+            android:layout_marginLeft="30dip"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:drawableTop="@drawable/selector_tab1"
+            android:button="@null"
+            android:text="物品"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:checked="true"
+            />
+        <RadioButton
+            android:id="@+id/tab_rb_b"
+            android:layout_marginLeft="40dip"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:drawableTop="@drawable/selector_tab2"
+            android:button="@null"
+            android:text="好人榜"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            />
+        <RadioButton
+            android:id="@+id/tab_rb_c"
+            android:layout_marginLeft="40dip"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:drawableTop="@drawable/selector_tab3"
+            android:button="@null"
+            android:text="消息"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            />
+        <RadioButton
+            android:id="@+id/tab_rb_d"
+            android:layout_marginLeft="40dip"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:drawableTop="@drawable/selector_tab4"
+            android:button="@null"
+            android:text="个人"
+            android:textColor="#000000"
+            android:textSize="8sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:singleLine="true"/>
+    </RadioGroup>
+</LinearLayout>

@@ -25,14 +25,30 @@
         android:drawSelectorOnTop="true" 
         android:layout_weight="1000">
     </com.example.cyc.MyListView>
-    
-    <Button
-        android:id="@+id/back"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:text="返回"
-        android:textColor="@color/white"
-        android:background="@color/CornflowerBlue"
-        />
-
+        android:layout_height="60dp"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+        <Button
+            android:id="@+id/back"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:background="@color/CornflowerBlue"
+            />
+        <Button
+            android:id="@+id/OK"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="确认修改"
+            android:textColor="@color/white"
+            android:background="@color/CornflowerBlue"
+            />
+    </LinearLayout>
 </LinearLayout>

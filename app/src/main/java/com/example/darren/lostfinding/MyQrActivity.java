@@ -1,19 +1,15 @@
 package com.example.darren.lostfinding;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Display;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.example.adapter.LvAdapterMainItem;
-import com.example.cyc.Globle;
+import com.example.adapter.QR_Item_Adapter;
+import com.example.adapter.QR_Item_Adapter.*;
 import com.example.cyc.MyListView;
 import com.example.cyc.QREntity;
 import com.example.darren.lostfinding.net.MyClient;
@@ -26,32 +22,29 @@ import java.util.Map;
 
 public class MyQrActivity extends Activity {
 	private Gdata app;
-	private Button btnbk;
+	private Button btnbk,btnok;
 	private MyListView lvItem;
-
+	private MyQrActivity LA;
 	private List<QREntity> qrInfo;
-	private String PRI_QRUrl="http://192.168.0.88:8080/WHOS/app/statu";
-	private String PUB_QRUrl="http://www.shuide.cc:8112/WHOS/app/statu";
-	private String QRUrl= Globle.DEBUG?PRI_QRUrl:PUB_QRUrl;
-
-	private String PRI_getUrl="http://192.168.0.88:8080/WHOS/search?ID=";
-	private String PUB_getUrl="http://www.shuide.cc:8112/WHOS/search?ID=";
-	private String getUrl= Globle.DEBUG?PRI_getUrl:PUB_getUrl;
+	private List<Change> qrVis;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_qr);
 		app=(Gdata)getApplication();
+		LA=this;
 		initView();
 		initControl();
 	}
 
 	private void initView(){
 		btnbk = (Button) findViewById(R.id.back);
+		btnok= (Button) findViewById(R.id.OK);
 	}
 	private void initControl(){
 		qrInfo=new ArrayList<QREntity>();
+		qrVis=new ArrayList<Change>();
 		lvItem = (MyListView) findViewById(R.id.lv_MyQR_items);
 		getEntity();
 		lvItem.setonRefreshListener(new MyListView.OnRefreshListener() {
@@ -66,11 +59,32 @@ public class MyQrActivity extends Activity {
 				finish();
 			}
 		});
+		btnok.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				Map<String, String> obj = new HashMap<String, String>();
+				for(int i=0;i<qrVis.size();i++){
+					obj.put(String.valueOf(i), qrVis.get(i).toString());
+				}
+				MyClient.postAsyn(app.vis_add, new MyClient.ResultCallback<String>() {
+					@Override
+					public void onError(Request request, Exception e) {
+						e.printStackTrace();
+					}
+
+					@Override
+					public String onResponse(String u) {
+						LA.finish();
+						return u;
+					}
+				}, obj);
+			}
+		});
 	}
 	private void getEntity() {
 		Map<String, String> obj = new HashMap<String, String>();
 		obj.put("username", app.getName());
-		app.getClient().postAsyn(QRUrl, new MyClient.ResultCallback<String>() {
+		MyClient.postAsyn(app.statu_add, new MyClient.ResultCallback<String>() {
 			@Override
 			public void onError(Request request, Exception e) {
 				e.printStackTrace();
@@ -79,23 +93,8 @@ public class MyQrActivity extends Activity {
 			public String onResponse(String u) {
 				if (u.length() > 0) {
 					qrInfo.clear();
-					String r1, r2;
-					while (u.indexOf("value=!@#$") != -1) {
-						r1 = u.substring("key=!@#$".length(), u.indexOf("value=!@#$"));
-						u = u.substring(u.indexOf("value=!@#$") + "value=!@#$".length());
-						if (u.indexOf("value=!@#$") != -1) {
-							r2 = u.substring(0, u.indexOf("key=!@#$"));
-							if (r2.indexOf("\r") != -1) {
-								r2 = r2.substring(0, r2.indexOf("\r"));
-							}
-							u = u.substring(u.indexOf("key=!@#$"));
-						} else {
-							r2 = u;
-							break;
-						}
-						qrInfo.add(new QREntity(r1, r2));
-					}
-					LvAdapterMainItem adapter = new LvAdapterMainItem(getApplicationContext(), qrInfo, app.getPUB());
+					qrInfo=QREntity.getQRfromString(u);
+					QR_Item_Adapter adapter = new QR_Item_Adapter(getApplicationContext(), qrInfo, app.getPUB());
 					adapter.setHandler(hUI);
 					lvItem.setAdapter(adapter);
 					lvItem.onRefreshComplete();
@@ -109,8 +108,8 @@ public class MyQrActivity extends Activity {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (msg.what == 666) {
-				String rr=getUrl+(String) msg.obj;
-				app.getClient().getAsyn(rr, new MyClient.ResultCallback<String>() {
+				String rr=app.search_add+(String) msg.obj+"&app=1.0.0";
+				MyClient.getAsyn(rr, new MyClient.ResultCallback<String>() {
 					@Override
 					public void onError(Request request, Exception e) {
 						e.printStackTrace();
@@ -123,7 +122,20 @@ public class MyQrActivity extends Activity {
 						return u;
 					}
 				});
+			}else if(msg.what == 777){//修改显示状态
+				qrVis.add((Change)msg.obj);
+			}else if(msg.what == 888){//展示图片
+				Intent result = new Intent(MyQrActivity.this,
+						QRShowActivity.class);
+				result.putExtra("DSTID", app.search_add+(String) msg.obj);
+				startActivity(result);
 			}
 		}
 	};
+
+	@Override
+	protected void  onResume(){
+		super.onResume();
+		getEntity();
+	}
 }

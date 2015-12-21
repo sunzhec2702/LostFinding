@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.cyc.Globle;
 import com.example.darren.lostfinding.net.MyClient;
@@ -28,31 +29,18 @@ import com.squareup.okhttp.Request;
 
 public class RegistActivity extends Activity {
 	public boolean DEBUG=false;
-	private Button btnBack, btnRegist,btnConf;
+	TextView btnBack;
+	private Button  btnRegist,btnConf;
 	private EditText pwet,useret,cellet,rpwet,confet;
 	private Gdata app;
 	private View mProgressView;
-	RegistActivity la=this;
-	private String PRI_loginUrl="http://192.168.0.88:8080/WHOS/register.do";
-	private String PUB_loginUrl="http://www.shuide.cc:8112/WHOS/register.do";
-	private String loginUrl= Globle.DEBUG?PRI_loginUrl:PUB_loginUrl;
+	RegistActivity LA=this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.regist);
 		app = (Gdata)getApplication();
-		final Handler handler = new Handler() {
-			@Override
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-				if (msg.what == 1) {
-					Intent result = new Intent(RegistActivity.this, LoginActivity.class);
-					startActivity(result);
-					la.finish();
-				}
-			}
-		};
 
 		final Handler hUI = new Handler() {
 			@Override
@@ -60,7 +48,7 @@ public class RegistActivity extends Activity {
 				super.handleMessage(msg);
 				if (msg.what != 0) {
 					btnConf.setEnabled(false);
-					btnConf.setText("等待" + msg.what + "秒后重新发送");
+					btnConf.setText( msg.what);
 				}else{
 					btnConf.setText("获取验证码");
 					btnConf.setEnabled(true);
@@ -72,14 +60,14 @@ public class RegistActivity extends Activity {
 		btnRegist.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				attemptLogin(handler);
+				attemptLogin();
 			}
 		});
 		btnConf.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				String cell = cellet.getText().toString();
-				app.getClient().sendConfMsg(cell);
+				MyClient.sendConfMsg(cell);
 				Thread thread = new Thread(new Runnable() {
 					@Override
 					public void run() {
@@ -100,12 +88,11 @@ public class RegistActivity extends Activity {
 				thread.start();
 			}
 		});
-
 	}
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		btnBack = (Button) findViewById(R.id.btn_regist_back);
+		btnBack = (TextView) findViewById(R.id.btn_regist_back);
 		btnRegist = (Button) findViewById(R.id.btn_regist_regist);
 		useret=(EditText)findViewById(R.id.userID);
 		cellet=(EditText)findViewById(R.id.pNUM);
@@ -123,14 +110,12 @@ public class RegistActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent result = new Intent(RegistActivity.this, LoginActivity.class);
-				startActivity(result);
 				finish();
 			}
 		});
 	}
 
-	private boolean attemptLogin(final Handler handler) {
+	private boolean attemptLogin() {
 
 		boolean result=false;
 		// Store values at the time of the login attempt.
@@ -169,7 +154,7 @@ public class RegistActivity extends Activity {
 			par[3]=new MyClient.Param("confirm",conf);
 			app.setName(username);
 			app.getSocket();
-			app.getClient().postAsyn(loginUrl, new MyClient.ResultCallback<String>() {
+			MyClient.postAsyn(app.regist_add, new MyClient.ResultCallback<String>() {
 				@Override
 				public void onError(Request request, Exception e) {
 					e.printStackTrace();
@@ -179,11 +164,8 @@ public class RegistActivity extends Activity {
 					if (u.indexOf("成功") != -1) {
 						Message message = new Message();
 						message.what = 1;
-						handler.sendMessage(message);
+						LA.finish();
 					} else {
-						Message message = new Message();
-						message.what = -1;
-						handler.sendMessage(message);
 					}
 					//mTv.setText(u);//注意这里是UI线程
 					return u;

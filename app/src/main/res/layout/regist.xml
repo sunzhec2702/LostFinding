@@ -1,101 +1,128 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bitmap" >
 
+    <ImageView
+        android:id="@+id/iv_login_Logo"
+        android:layout_marginLeft="111.5dp"
+        android:layout_marginRight="111.5dp"
+        android:layout_marginTop="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/whose_logo"/>
     <EditText
         android:id="@+id/userID"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="170dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="用户名"
-        android:textColor="#000"
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle1"
+        android:gravity="center"
+        android:hint="请输入用户名"
+        android:textColor="#A6A6A6"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/pNUM"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="215dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="手机号"
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle1"
+        android:gravity="center"
+        android:hint="请输入手机号"
+        android:textColor="#A6A6A6"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_msg"
+        android:layout_marginLeft="240dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="265dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/rectangle2_button"
+        android:text="获取验证码"
+        android:textColor="#0B0B0B"
+        android:textSize="12sp" />
+    <EditText
+        android:id="@+id/et_confirm"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginTop="260dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle1"
+        android:gravity="center"
+        android:hint="请输入验证码"
+        android:textColor="#A6A6A6"
         android:textSize="16sp" />
     <EditText
         android:id="@+id/et_regist_userPwd"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="305dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="输入密码"
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle1"
+        android:gravity="center"
         android:inputType="textPassword"
-        android:textColor="#000"
+        android:hint="请输入密码"
+        android:textColor="#A6A6A6"
         android:textSize="16sp" />
     <EditText
         android:id="@+id/rp_userPwd"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="350dp"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="重复密码"
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle1"
+        android:gravity="center"
         android:inputType="textPassword"
-        android:textColor="#000"
+        android:hint="重复密码"
+        android:textColor="#A6A6A6"
         android:textSize="16sp" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="80dp"
-        android:orientation="horizontal" >
 
-        <EditText
-            android:id="@+id/et_confirm"
-            android:layout_width="210dp"
-            android:layout_height="60dp"
-            android:hint="验证码"
-            android:textColor="#000"
-            android:textSize="16sp" />
-        <Button
-            android:id="@+id/btn_msg"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:text="发送验证码"
-            android:textColor="#000"
-            android:textSize="16sp" />
-    </LinearLayout>
+
+
+
+
     <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
+        android:layout_width="fill_parent" android:layout_height="100dp"
+        android:gravity="center" android:visibility="gone"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_regist_regist"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
         android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:orientation="horizontal" >
-
-        <Button
+        android:layout_height="40dp"
+        android:background="@drawable/rectangle2_button"
+        android:text="注册"
+        android:textColor="#0B0B0B"
+        android:textSize="16sp"  />
+        <TextView
             android:id="@+id/btn_regist_back"
-            android:layout_width="100dp"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="10dp"
-            android:background="#fff"
-            android:gravity="left|bottom"
-            android:text="返回"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <View
+            android:layout_marginLeft="125dp"
+            android:layout_marginRight="125dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="34.5dp"
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1000" />
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="已有账号？直接登录"
+            android:textColor="#0B0B0B"
+            android:textSize="10sp" />
 
-        <Button
-            android:id="@+id/btn_regist_regist"
-            android:layout_width="100dp"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="10dp"
-            android:background="#fff"
-            android:gravity="right|bottom"
-            android:text="注册"
-            android:textColor="#000"
-            android:textSize="16sp" />
-    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

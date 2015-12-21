@@ -11,7 +11,7 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/iv_PersonInfo_bank"
+            android:id="@+id/back"
             android:layout_width="40dp"
             android:layout_height="fill_parent"
             android:src="@drawable/back_black" />
@@ -27,12 +27,12 @@
             android:textSize="15sp" />
 
         <ImageView
-            android:id="@+id/tb_PersonInfo_Set"
+            android:id="@+id/permit"
             android:layout_width="40dp"
             android:layout_height="fill_parent"
             android:src="@drawable/confirm" />
     </LinearLayout>
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -45,19 +45,26 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="left|center"
-            android:text="用户名"
+            android:text="头像"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/et_personInfoEdit_UserName"
+        <ImageView
+            android:id="@+id/iv_personInfoEidt_UserIcon"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="3"
-            android:gravity="left|center"
-            android:text="olympic"
+            android:gravity="left|center" />
+        <Button
+            android:id="@+id/bt_pic"
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+
+            android:gravity="center"
+            android:text="修改"
             android:textColor="@color/black"
             android:textSize="15sp" />
+        />
     </LinearLayout>
 
     <LinearLayout
@@ -82,7 +89,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="3"
             android:gravity="left|center"
-            android:text="微微一笑很倾城"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>
@@ -130,7 +137,7 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/et_personInfoEdit_money"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
@@ -164,33 +171,6 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="left|center"
-            android:text="被赞次数"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/et_personInfoEdit_goodTime"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="3"
-            android:gravity="left|center"
-            android:text="10"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="left|center"
             android:text="地址"
             android:textColor="@color/black"
             android:textSize="15sp" />
@@ -201,12 +181,12 @@
             android:layout_height="fill_parent"
             android:layout_weight="3"
             android:gravity="left|center"
-            android:text="陕西省，西安市，高西一路3号"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="15sp" />
     </LinearLayout>
 
-    <LinearLayout
+   <!--  <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
@@ -229,6 +209,6 @@
             android:gravity="left|center"
             android:textColor="@color/black"
             android:textSize="15sp" />
-    </LinearLayout>
+    </LinearLayout> -->
 
 </LinearLayout>

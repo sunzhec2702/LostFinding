@@ -29,14 +29,14 @@
 	        android:layout_marginRight="5dp" >
 	        
 	        
-	           <ImageView 
+	           <com.example.cyc.CircleImageView
 	           android:id="@+id/iv_userhead" 
 	           android:layout_width="52dp"
 		       android:layout_height="52dp"
 	           android:focusable="false" 
 	           android:layout_alignParentRight="true" 
                android:layout_alignParentTop="true" 
-	           android:background="@drawable/shuaige"/>
+	           />
  				
  				<TextView 
 	            android:id="@+id/tv_chatcontent" 

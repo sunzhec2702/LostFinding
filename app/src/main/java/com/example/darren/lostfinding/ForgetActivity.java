@@ -29,9 +29,6 @@ public class ForgetActivity extends Activity {
 	private EditText etCell,etMsg;
 	private Gdata app;
 	private View mProgressView;
-	private String PRI_confUrl="http://192.168.0.88:8080/WHOS/register.do";
-	private String PUB_confUrl="http://www.shuide.cc:8112/WHOS/register.do";
-	private String confUrl= Globle.DEBUG?PRI_confUrl:PUB_confUrl;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +55,7 @@ public class ForgetActivity extends Activity {
 				super.handleMessage(msg);
 				if (msg.what != 0) {
 					btnMsg.setEnabled(false);
-					btnMsg.setText("等待" + msg.what + "秒后重新发送");
+					btnMsg.setText(msg.what);
 				} else {
 					btnMsg.setText("获取验证码");
 					btnMsg.setEnabled(true);
@@ -71,7 +68,7 @@ public class ForgetActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				String cell = etCell.getText().toString();
-				app.getClient().sendConfMsg(cell);
+				MyClient.sendConfMsg(cell);
 				Thread thread = new Thread(new Runnable() {
 					@Override
 					public void run() {
@@ -106,7 +103,7 @@ public class ForgetActivity extends Activity {
 				MyClient.Param[] par=new MyClient.Param[2];
 				par[0]=new MyClient.Param("key",cell);
 				par[1]=new MyClient.Param("forgot",msg);
-				app.getClient().postAsyn(confUrl, new MyClient.ResultCallback<String>() {
+				MyClient.postAsyn(app.regist_add, new MyClient.ResultCallback<String>() {
 					@Override
 					public void onError(Request request, Exception e) {
 						e.printStackTrace();
